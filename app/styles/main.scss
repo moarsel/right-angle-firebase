@@ -118,10 +118,10 @@ body {
   font-size: 16px;
 }
 
-.info .url {
-  font-weight: normal;
-  color:#999;
-  font-size:13px;
+.info .wordcount {
+  @extend .label;
+  @extend .label-primary;
+  font-size:10px;
   margin-left:5px;
 }
 

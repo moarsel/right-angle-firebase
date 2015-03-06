@@ -12,8 +12,8 @@
                 create: function(post) {
                     return posts.$add(post);
                 },
-                get: function() {
-                    return posts;
+                get: function(postId) {
+                    return posts.$getRecord(postId);
                 },
                 delete: function(post) {
                     return posts.$remove(post);
