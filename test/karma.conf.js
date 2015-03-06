@@ -6,9 +6,14 @@
 module.exports = function(config) {
   'use strict';
 
+
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
+
+    client: {
+      captureConsole: true,
+    },
 
     // base path, that will be used to resolve files and exclude
     basePath: '../',
@@ -26,6 +31,8 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
+      'bower_components/firebase/firebase.js',
+      'bower_components/angularfire/dist/angularfire.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
@@ -47,13 +54,14 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+      'PhantomJS',
     ],
 
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-chrome-launcher'
     ],
 
     // Continuous Integration mode
