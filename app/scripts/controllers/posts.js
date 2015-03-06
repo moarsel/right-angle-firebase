@@ -1,8 +1,8 @@
 (function() {
     'use strict';
 
-    angular.module('angnewsApp').controller('PostsCtrl', ['$scope', 'Post',
-        function($scope, Post) {
+    angular.module('angnewsApp').controller('PostsCtrl', ['$scope', 'Post', '$location',
+        function($scope, Post, $location) {
 
             $scope.posts = Post.all;
 
@@ -12,11 +12,14 @@
             };
 
             $scope.submitPost = function() {
-                Post.create($scope.post).then(function() {
+                Post.create($scope.post).then(function(ref) {
                     $scope.post = {
                         url: 'http://',
                         'title': ''
                     };
+                
+                $location.path('/posts/' + ref.name());
+
                 });
             };
 
