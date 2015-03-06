@@ -12,8 +12,8 @@
                 create: function(post) {
                     return posts.$add(post);
                 },
-                get: function(postId) {
-                    return $firebaseArray(ref.child('posts').child(postId)).$asObject();
+                get: function() {
+                    return posts;
                 },
                 delete: function(post) {
                     return posts.$remove(post);
