@@ -7,18 +7,18 @@
             $scope.posts = Post.all;
 
             $scope.post = {
-                url: 'http://',
+                body: 'text goes here',
                 'title': ''
             };
 
             $scope.submitPost = function() {
                 Post.create($scope.post).then(function(ref) {
                     $scope.post = {
-                        url: 'http://',
+                        body: 'text goes here',
                         'title': ''
                     };
-                
-                $location.path('/posts/' + ref.name());
+
+                    $location.path('/posts/' + ref.name());
 
                 });
             };

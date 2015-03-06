@@ -6,7 +6,7 @@
         <input type="text" class="form-control" placeholder="Title" ng-model="post.title">
       </div>
       <div class="form-group">
-      <input type="text" class="form-control" placeholder="Link" ng-model="post.url">
+      <input type="text" class="form-control" placeholder="Link" ng-model="post.body">
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
@@ -20,15 +20,15 @@
     <div class="col-md-9 col-xs-11">
  
       <div class="info">
-        <a href="{{ post.url }}" target="_blank">
+        <a href="#/posts/{{ post.$id }}">
           {{ post.title }}
-          <span class="url">({{ post.url }})</span>
         </a>
+          <span class="wordcount">{{ post.body | wordCount }}</span>
+        
       </div>
       <div>
         <span>submitted by <a href="#/users/{{ post.owner }}">{{ post.owner }}</a></span>
         -
-        <a href="#/posts/{{ post.$id }}">comments</a>
         <a ng-click="deletePost(post)" href="javascript:;">delete</a>
       </div>
     </div>
