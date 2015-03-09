@@ -1,6 +1,6 @@
 <h1>Welcome
-{{ user.twitter.displayName }}
-<img ng-show="signedIn" ng-src='{{user.twitter.cachedUserProfile.profile_image_url}}'>
+{{ auth.twitter.displayName }}
+<img ng-show="signedIn" ng-src='{{auth.twitter.cachedUserProfile.profile_image_url}}'>
 </h1>
 <div class="container">
 	<p ng-show="error">{{ error }}</p>

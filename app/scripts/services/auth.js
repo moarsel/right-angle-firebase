@@ -22,7 +22,15 @@
                         callback(authData);
                     });
                 });
-            }
+            },
+            setUserProfile: function(data){
+                console.log(data);
+                ref.child('users').set(data);
+            },
+            getUserProfile: function(user){
+                ref.child('users').child(user);
+            },
+            user: {},
         };
 
         return Auth;
