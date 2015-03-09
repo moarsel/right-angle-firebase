@@ -1,0 +1,11 @@
+<h1>Welcome
+{{ user.twitter.displayName }}
+<img ng-show="signedIn" ng-src='{{user.twitter.cachedUserProfile.profile_image_url}}'>
+</h1>
+<div class="container">
+	<p ng-show="error">{{ error }}</p>
+	<button ng-hide="signedIn" ng-click="login()" class="btn btn-primary">Log in</button>
+	<span ng-show="signedIn">
+		<button ng-click="logout()" class="btn btn-primary">Sign Out</button>
+	</span>
+</div>
