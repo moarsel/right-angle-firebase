@@ -12,7 +12,6 @@
     </form>
   </div>
 
-
   <div class="post row" ng-repeat="(postId, post) in posts">
     <div class="col-xs-1">
  
@@ -29,7 +28,7 @@
       <div>
         <span>submitted by <a href="#/users/{{ post.owner }}">{{ post.owner }}</a></span>
         -
-        <a ng-click="deletePost(post)" href="javascript:;">delete</a>
+        <a href="javascript:;" ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID">delete</a>
       </div>
     </div>
     <div class="col-md-2">

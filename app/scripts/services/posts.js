@@ -10,7 +10,13 @@
             var Post = {
                 all: posts,
                 create: function(post) {
-                    return posts.$add(post);
+                    return posts.$add(post)
+                        .then(function(postRef) {
+                            console.log(postRef);
+                            $firebaseArray(ref.child('user_posts').child(post.creatorUID))
+                                .$add(postRef.name());
+                            return postRef;
+                        });
                 },
                 get: function(postId) {
                     return posts.$getRecord(postId);
