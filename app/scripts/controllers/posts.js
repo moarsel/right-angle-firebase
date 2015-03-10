@@ -4,8 +4,17 @@
     angular.module('angnewsApp').controller('PostsCtrl', ['$scope', 'Post', '$location', 'Auth',
         function($scope, Post, $location, Auth) {
 
+            $scope.auth = Auth.authorize();
+            
+            Auth.getUserProfile($scope.auth.uid)
+                    .then(function(user){
+                        $scope.user = user;
+                    });
+
+            // console.log($scope.auth, $scope.user);
             $scope.posts = Post.all;
-            $scope.user = Auth.user;
+            
+            $scope.signedIn = Auth.signedIn;
 
             $scope.post = {
                 body: 'text goes here',
@@ -17,7 +26,7 @@
                 $scope.post.creatorUID = $scope.user.provider_id; // jshint ignore:line
 
                 Post.create($scope.post).then(function(ref) {
-                    $location.path('/posts/' + ref.name());
+                    $location.path('/posts/' + ref.key());
                 });
             };
 
