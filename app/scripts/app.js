@@ -23,11 +23,15 @@
             $routeProvider
                 .when('/', {
                     templateUrl: 'views/posts.html',
-                    controller: 'PostsCtrl'
+                    controller: 'PostsCtrl',
                 })
                 .when('/posts/:postId/', {
                     templateUrl: 'views/showpost.html',
-                    controller: 'PostViewCtrl'
+                    controller: 'PostViewCtrl',
+                })
+                .when('/users/:userId', {
+                    templateUrl: 'views/profile.html',
+                    controller: 'ProfileCtrl'
                 })
                 .when('/about', {
                     templateUrl: 'views/about.html',
@@ -35,12 +39,7 @@
                 })
                 .when('/register', {
                     templateUrl: 'views/register.html',
-                    controller: 'AuthCtrl',
-                    // resolve: {
-                        // user: function(Auth) {
-                            // return Auth.resolveUser();
-                        // }
-                    // }
+                    controller: 'AuthCtrl'
                 })
                 .otherwise({
                     redirectTo: '/'
