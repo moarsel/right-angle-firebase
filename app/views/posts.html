@@ -1,7 +1,7 @@
 <div class="container posts-page">
  
   <div class="container">
-    <form class="navbar-form navbar-left" role="search" ng-submit="submitPost()">
+    <form class="navbar-form navbar-left" role="search" ng-submit="submitPost()" ng-show="signedIn()">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Title" ng-model="post.title">
       </div>
@@ -27,8 +27,7 @@
       </div>
       <div>
         <span>submitted by <a href="#/users/{{ post.owner }}">{{ post.owner }}</a></span>
-        -
-        <a href="javascript:;" ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID">delete</a>
+        <a href="javascript:;" ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID"> delete</a>
       </div>
     </div>
     <div class="col-md-2">
