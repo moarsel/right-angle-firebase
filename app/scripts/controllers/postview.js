@@ -11,13 +11,15 @@
             $scope.comments = Post.comments($routeParams.postId);
 
             $scope.auth = Auth.authorize();
-            Auth.getUserProfile($scope.auth.uid)
-                .then(function(user) {
-                    $scope.user = user;
-                });
 
             $scope.signedIn = Auth.signedIn;
 
+            if ($scope.signedIn()) {
+                Auth.getUserProfile($scope.auth.uid)
+                    .then(function(user) {
+                        $scope.user = user;
+                    });
+            }
 
             $scope.addComment = function() {
                 if (!$scope.commentText || $scope.commentText === '') {

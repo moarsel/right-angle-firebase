@@ -16,7 +16,7 @@
       <div class="info">
         <a ng-href="#/posts/{{ post.$id }}">
           {{ post.title }}
-          <span class="info">({{ post.body}})</span>
+          <span class="wordcount">{{ post.body | wordCount }}</span>
         </a>
       </div>
       <div>

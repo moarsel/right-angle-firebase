@@ -6,19 +6,21 @@
 
             $scope.auth = Auth.authorize();
             
-            Auth.getUserProfile($scope.auth.uid)
-                    .then(function(user){
-                        $scope.user = user;
-                    });
-
-            // console.log($scope.auth, $scope.user);
             $scope.posts = Post.all;
             
             $scope.signedIn = Auth.signedIn;
 
+
+            if ($scope.signedIn()) {
+                Auth.getUserProfile($scope.auth.uid)
+                    .then(function(user){
+                        $scope.user = user;
+                    });
+            }
+
             $scope.post = {
-                body: 'text goes here',
-                'title': ''
+                body: 'because...',
+                'title': 'I think...'
             };
 
             $scope.submitPost = function() {
@@ -33,8 +35,6 @@
             $scope.deletePost = function(post) {
                 Post.delete(post);
             };
-
-
         }
     ]);
 
