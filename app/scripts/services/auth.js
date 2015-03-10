@@ -15,7 +15,11 @@
                 authObj.$unauth();
             },
             signedIn: function() {
-                return authObj.$getAuth();
+                return !!authObj.$getAuth();
+            },
+            authorize: function() {
+                var authenticatedUser = authObj.$getAuth();
+                return authenticatedUser;
             },
             onAuth: function onLoggedIn(callback) {
                 authObj.$onAuth(function(authData) {
@@ -28,8 +32,12 @@
                 ref.child('users').child(data.provider_id).set(data); // jshint ignore:line
             },
             getUserProfile: function(user) {
-                Auth.user = users.$getRecord(user);
-                return users.$getRecord(user);
+                return users.$loaded()
+                    .then(function(users) {
+                        var userProfile = users.$getRecord(user);
+                        Auth.user = userProfile;
+                        return userProfile;
+                    });
             },
             user: {},
         };
