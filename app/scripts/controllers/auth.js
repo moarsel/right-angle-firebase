@@ -7,14 +7,14 @@
         $scope.user = null;
         $scope.auth = null;
 
+        $scope.signedIn = Auth.signedIn();
 
-        $scope.signedIn = Auth.signedIn() ? true : false;
-
-
-        $scope.login = function scopeLogin() {
+        $scope.login = function () {
             Auth.login().then(function(authData) {
-
-                console.log('We are logged in!', authData);
+                Auth.getUserProfile(authData.uid)
+                    .then(function(user){
+                        $scope.user = user;
+                    });
             })
                 .catch(function(error) {
                     $scope.error = error.message;
@@ -24,12 +24,17 @@
         $scope.logout = Auth.logout;
 
         Auth.onAuth(function(authData) {
+
             $scope.auth = authData;
-            $scope.signedIn = authData ? true : false;
+            $scope.signedIn = Auth.signedIn();
 
             if ($scope.signedIn) {
-                $scope.user = Auth.getUserProfile(authData.uid);
-                // console.log($scope);
+                Auth.getUserProfile(authData.uid)
+                    .then(function(user){
+                        $scope.user = user;
+                    });
+            } else {
+                // $scope.user = {};
             }
 
             if (authData && $scope.user === null ) {
