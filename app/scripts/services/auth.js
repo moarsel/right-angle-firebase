@@ -2,9 +2,10 @@
 
     'use strict';
 
-    angular.module('angnewsApp').factory('Auth', function(FIREBASE_URL, $firebaseAuth, $timeout) {
+    angular.module('angnewsApp').factory('Auth', function(FIREBASE_URL, $firebaseAuth, $firebaseArray, $timeout) {
         var ref = new Firebase(FIREBASE_URL); // jshint ignore:line
         var authObj = $firebaseAuth(ref);
+        var users = $firebaseArray(ref.child('users'));
 
         var Auth = {
             login: function() {
@@ -23,12 +24,12 @@
                     });
                 });
             },
-            setUserProfile: function(data){
-                console.log(data);
-                ref.child('users').set(data);
+            setUserProfile: function(data) {
+                ref.child('users').child(data.provider_id).set(data); // jshint ignore:line
             },
-            getUserProfile: function(user){
-                ref.child('users').child(user);
+            getUserProfile: function(user) {
+                Auth.user = users.$getRecord(user);
+                return users.$getRecord(user);
             },
             user: {},
         };

@@ -4,7 +4,7 @@
 
     angular.module('angnewsApp').controller('AuthCtrl', function($scope, $location, Auth) {
 
-        // $scope.user = null;
+        $scope.user = null;
         $scope.auth = null;
 
 
@@ -28,10 +28,11 @@
             $scope.signedIn = authData ? true : false;
 
             if ($scope.signedIn) {
-                Auth.user = Auth.getUserProfile(authData.uid);
+                $scope.user = Auth.getUserProfile(authData.uid);
+                // console.log($scope);
             }
 
-            if (authData && Auth.user === null) {
+            if (authData && $scope.user === null ) {
                 var profile = {
                     'name': authData.twitter.displayName,
                     'provider_id': authData.uid
@@ -39,7 +40,6 @@
                 Auth.setUserProfile(profile);
             }
         });
-
     });
 
 })();
