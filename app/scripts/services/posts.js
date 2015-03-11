@@ -14,8 +14,8 @@
                 create: function(post) {
                     return posts.$add(post)
                         .then(function(postRef) {
-                            $firebaseArray(ref.child('user_posts').child(post.creatorUID))
-                                .$add(postRef.key());
+                            ref.child('user_posts').child(post.creatorUID).child(postRef.key())
+                                .set(postRef.key());
                             return postRef;
                         });
                 },
@@ -30,6 +30,17 @@
                     return comments;
                 },
                 delete: function(post) {
+                    // delete the user-post association
+                    var userPosts = $firebaseArray(ref.child('user_posts').child(post.creatorUID));
+                    userPosts.$loaded().then(function(userPost){
+                        var postToDelete = userPost.$indexFor(post.$id);
+                        userPost.$remove(postToDelete);
+                    });
+
+                    // delete associated comments
+                    // TODO: (no comment post association)
+                    
+                    // finally, delete the post itself
                     return posts.$remove(post);
                 }
             };
