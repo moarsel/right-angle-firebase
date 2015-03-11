@@ -28,6 +28,11 @@
                 .when('/posts/:postId/', {
                     templateUrl: 'views/showpost.html',
                     controller: 'PostViewCtrl',
+                    resolve: {
+                        post: function(Post, $route) {
+                            return Post.get($route.current.params.postId);
+                        }
+                    }
                 })
                 .when('/users/:userId', {
                     templateUrl: 'views/profile.html',
