@@ -1,12 +1,10 @@
 (function() {
     'use strict';
 
-    angular.module('angnewsApp').controller('PostViewCtrl', ['$scope', 'Post', '$routeParams', 'Auth',
-        function($scope, Post, $routeParams, Auth) {
+    angular.module('angnewsApp').controller('PostViewCtrl', ['$scope', 'Post', 'resolvedPost', '$routeParams', 'Auth',
+        function($scope, Post, resolvedPost, $routeParams, Auth) {
 
-            Post.get($routeParams.postId).then(function(post) {
-                $scope.post = post;
-            });
+            $scope.post = resolvedPost;
 
             $scope.comments = Post.comments($routeParams.postId);
 

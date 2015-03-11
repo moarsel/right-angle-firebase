@@ -8,6 +8,7 @@
         $scope.auth = null;
 
         $scope.signedIn = Auth.signedIn();
+        $scope.logout = Auth.logout;
 
         $scope.login = function () {
             Auth.login().then(function(authData) {
@@ -21,10 +22,8 @@
                 });
         };
 
-        $scope.logout = Auth.logout;
 
         Auth.onAuth(function(authData) {
-
             $scope.auth = authData;
             $scope.signedIn = Auth.signedIn();
 

@@ -29,7 +29,7 @@
                     templateUrl: 'views/showpost.html',
                     controller: 'PostViewCtrl',
                     resolve: {
-                        post: function(Post, $route) {
+                        resolvedPost: function(Post, $route) {
                             return Post.get($route.current.params.postId);
                         }
                     }
