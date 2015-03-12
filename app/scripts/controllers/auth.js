@@ -39,7 +39,9 @@
             if (authData && $scope.user === null ) {
                 var profile = {
                     'name': authData.twitter.displayName,
-                    'provider_id': authData.uid
+                    'provider_id': authData.uid,
+                    'profileImage': authData.twitter.cachedUserProfile.profile_image_url_https,
+                    'location': authData.twitter.cachedUserProfile.location
                 };
                 Auth.setUserProfile(profile);
             }
