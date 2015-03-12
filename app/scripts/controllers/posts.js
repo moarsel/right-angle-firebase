@@ -19,14 +19,13 @@
             }
 
             $scope.post = {
-                body: 'because...',
+                'body': 'because...',
                 'title': 'I think...'
             };
 
             $scope.submitPost = function() {
                 $scope.post.creator = $scope.user.name;
                 $scope.post.creatorUID = $scope.user.provider_id; // jshint ignore:line
-
                 Post.create($scope.post).then(function(ref) {
                     $location.path('/posts/' + ref.key());
                 });

@@ -5,8 +5,6 @@
         function($firebaseArray, FIREBASE_URL) {
 
             var ref = new Firebase(FIREBASE_URL); // jshint ignore:line
-
-
             var posts = $firebaseArray(ref.child('posts'));
 
             var Post = {

@@ -30,7 +30,9 @@
                     controller: 'PostViewCtrl',
                     resolve: {
                         resolvedPost: function(Post, $route) {
-                            return Post.get($route.current.params.postId);
+                            return Post.get($route.current.params.postId).then(function(post) {
+                                return post;
+                            });
                         }
                     }
                 })
