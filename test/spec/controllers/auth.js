@@ -28,8 +28,8 @@ describe('Controller: AuthCtrl', function() {
         expect(scope.signedIn).toEqual(jasmine.any(Boolean));
     });
 
-    it('should do other stuff', function() {
+    // it('should do other stuff', function() {
 
-    });
+    // });
 
 });
