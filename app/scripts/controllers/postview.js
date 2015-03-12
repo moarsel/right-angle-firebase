@@ -5,11 +5,8 @@
         function($scope, Post, resolvedPost, $routeParams, Auth) {
 
             $scope.post = resolvedPost;
-
             $scope.comments = Post.comments($routeParams.postId);
-
             $scope.auth = Auth.authorize();
-
             $scope.signedIn = Auth.signedIn;
 
             if ($scope.signedIn()) {
